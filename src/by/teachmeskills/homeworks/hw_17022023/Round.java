@@ -7,15 +7,15 @@ public class Round {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Введите длину прямоуголька");
-        int  a = scan.nextInt();
+        float  a = scan.nextFloat();
 
         System.out.println("Введите ширину прямоуголька");
-        int  b = scan.nextInt();
+        float  b = scan.nextFloat();
 
         System.out.println("Введите радиус");
-        int  r = scan.nextInt();
+        float r = scan.nextFloat();
 
-        if (2 * r >= Math.sqrt(a * a + b * b)) {
+        if ( 2 * r >= Math.sqrt(a * a + b * b)) {
             System.out.println("Можно");
         }
         else {
