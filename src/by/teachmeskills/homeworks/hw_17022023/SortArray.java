@@ -1,7 +1,6 @@
 package by.teachmeskills.homeworks.hw_17022023;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class SortArray {
     public static void main(String[] args) {
