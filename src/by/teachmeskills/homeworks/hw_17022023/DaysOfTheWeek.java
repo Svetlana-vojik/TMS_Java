@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class DaysOfTheWeek {
     public static void main(String[] args) {
-       Scanner scan = new Scanner(System.in);
-       int day = scan.nextInt();
+        Scanner scan = new Scanner(System.in);
+        int day = scan.nextInt();
 //      int day = 5;
 
         switch (day) {

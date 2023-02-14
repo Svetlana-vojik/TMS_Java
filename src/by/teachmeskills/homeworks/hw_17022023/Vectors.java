@@ -8,12 +8,12 @@ public class Vectors {
         int min = 0;
         int multiply = 1;
 
-      for (int i = 0; i < array.length; i++) {
-           if (array[i] < 0) {
-              sum = sum + array[i];
-           }
-       }
-       System.out.println("Сумма отрицательных элементов: " + sum);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 0) {
+                sum = sum + array[i];
+            }
+        }
+        System.out.println("Сумма отрицательных элементов: " + sum);
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] > array[max]) {
@@ -22,7 +22,8 @@ public class Vectors {
             if (array[i] < array[min]) {
                 min = i;
             }
-        }for ( int i = min + 1; i <= max - 1; i++){
+        }
+        for (int i = min + 1; i <= max - 1; i++) {
             int temp = array[i];
             multiply = multiply * array[i];
         }
