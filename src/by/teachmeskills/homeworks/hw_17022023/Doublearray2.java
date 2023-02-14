@@ -8,9 +8,8 @@ public class Doublearray2 {
         for (int i = 0; i < num.length; i++) {
             num[i] = new int[(int) (Math.random() * 20)];
             for (int j = 0; j < num[i].length; j++) {
-                num[i][j] = j + 1;
+                num[i][j] = (int) (Math.random() * 20);
                 System.out.print(num[i][j]);
-
             }
             System.out.println();
         }
