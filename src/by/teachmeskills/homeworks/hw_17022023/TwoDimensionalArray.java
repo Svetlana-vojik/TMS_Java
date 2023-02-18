@@ -15,16 +15,11 @@ public class TwoDimensionalArray {
             for (int j = 0; j < twoDimArray[i].length; j++) {
                 if (twoDimArray[i][j] % 2 == 0) {
                     System.out.print("0 ");
-                } else{
+                } else {
                     System.out.print("1 ");
-                }System.out.println(twoDimArray[i][j]);
+                }
+                System.out.println(twoDimArray[i][j]);
             }
-
-
         }
-
     }
 }
-
-
-
