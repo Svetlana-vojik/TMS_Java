@@ -3,29 +3,24 @@ package by.teachmeskills.homeworks.hw_17022023;
 import java.util.Scanner;
 
 public class TwoDimensionalArray {
-    public static int[][] multiArray;
-
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        multiArray = new int[n][];
-        for (int i = 0; i < n; i++) {
-            int a = scanner.nextInt();
-            multiArray[i] = new int[a];
+        System.out.println("Please, enter rows count:");
+        int rows = scanner.nextInt();
+        System.out.println("Please, enter columns count:");
+        int columns = scanner.nextInt();
+        int[][] twoDimArray = new int[rows][columns];
 
-        }
-        for (int i = 0; i < multiArray.length; i++) {
-            for (int j = 0; j < multiArray[i].length; j++) {
-                if ((i % 2) == 0 || (j % 2) == 0) {
-                    multiArray[i][j] = 0;
-
-                } else {
-                    multiArray[i][j] = 1;
-                }
-                System.out.print(multiArray[i][j]);
+        for (int i = 0; i < twoDimArray.length; i++) {
+            for (int j = 0; j < twoDimArray[i].length; j++) {
+                if (twoDimArray[i][j] % 2 == 0) {
+                    System.out.print("0 ");
+                } else{
+                    System.out.print("1 ");
+                }System.out.println(twoDimArray[i][j]);
             }
-            System.out.println();
+
+
         }
 
     }
