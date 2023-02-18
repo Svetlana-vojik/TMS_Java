@@ -1,6 +1,6 @@
 package by.teachmeskills.homeworks.hw_17022023;
 
-public class Doublearray2 {
+public class JaggedArray {
     public static void main(String[] args) {
         int[][] num = new int[10][];
 
