@@ -1,6 +1,6 @@
 package by.teachmeskills.homeworks.hw_24022023;
 
-public class trainings {
+public class Trainings {
     public static void main(String[] args) {
         int way = 10;
         int way7 = way;

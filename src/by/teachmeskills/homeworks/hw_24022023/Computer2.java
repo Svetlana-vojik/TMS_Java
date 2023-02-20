@@ -6,7 +6,5 @@ public class Computer2 {
         computer.info();
         computer.turnOn();
         computer.turnOff();
-
-
     }
 }

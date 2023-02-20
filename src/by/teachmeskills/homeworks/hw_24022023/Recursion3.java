@@ -7,9 +7,9 @@ public class Recursion3 {
             System.out.println("Yes");
         } else {
             System.out.println("No");
-
         }
     }
+
     public static int recursion(double n) {
         if (n == 1) {
             return 1;

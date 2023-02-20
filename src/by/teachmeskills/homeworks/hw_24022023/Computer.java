@@ -2,7 +2,6 @@ package by.teachmeskills.homeworks.hw_24022023;
 
 import java.util.Scanner;
 
-
 public class Computer {
     private String processor;
     private int ram;
@@ -44,7 +43,4 @@ public class Computer {
         } else if (i == num)
             System.out.println("Компьютер сгорел");
     }
-
-
 }
-

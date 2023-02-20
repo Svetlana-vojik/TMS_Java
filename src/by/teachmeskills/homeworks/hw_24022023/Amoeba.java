@@ -1,6 +1,6 @@
 package by.teachmeskills.homeworks.hw_24022023;
 
-public class amoeba {
+public class Amoeba {
     public static void main(String[] args) {
         int a = 1;
         int time = 24;
