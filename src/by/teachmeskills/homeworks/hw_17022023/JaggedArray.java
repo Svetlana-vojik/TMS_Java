@@ -4,7 +4,6 @@ public class JaggedArray {
     public static void main(String[] args) {
         int[][] num = new int[10][];
 
-
         for (int i = 0; i < num.length; i++) {
             num[i] = new int[(int) (Math.random() * 20)];
             for (int j = 0; j < num[i].length; j++) {
@@ -13,6 +12,5 @@ public class JaggedArray {
             }
             System.out.println();
         }
-
     }
 }

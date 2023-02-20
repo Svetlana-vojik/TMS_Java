@@ -5,6 +5,5 @@ public class Stars {
         for (int i = 1; i <= 4; i++) {
             System.out.println("*****");
         }
-
     }
 }
