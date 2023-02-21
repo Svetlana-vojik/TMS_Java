@@ -2,14 +2,14 @@ package by.teachmeskills.homeworks.hw_24022023;
 
 public class Trainings {
     public static void main(String[] args) {
-        int way = 10;
-        int way7 = way;
+        int initialDistance = 10;
+        int weekDistance = initialDistance;
 
-        System.out.println("Пробег за 1: " + way);
+        System.out.println("Пробег за 1: " + initialDistance);
         for (int i = 2; i <= 7; i++) {
-            way += way / 10;
-            way7 += way;
-            System.out.println("Пробег за " + i + ": " + way);
+            initialDistance += initialDistance / 10;
+            weekDistance += initialDistance;
+            System.out.println("Пробег за " + i + ": " + initialDistance);
         }
     }
 }

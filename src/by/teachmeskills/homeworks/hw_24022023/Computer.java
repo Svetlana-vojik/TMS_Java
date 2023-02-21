@@ -6,6 +6,7 @@ public class Computer {
     private String processor;
     private int ram;
     private int hardDiscCapacity;
+    Scanner scan = new Scanner(System.in);
 
     public Computer(String processor, int ram, int hardDiscCapacity) {
         this.processor = processor;
@@ -18,7 +19,6 @@ public class Computer {
     }
 
     public void turnOn() {
-        Scanner scan = new Scanner(System.in);
         Scanner random;
         int i = (int) (Math.random() * 2);
         System.out.print("Введите число 0 или 1: ");
@@ -32,11 +32,10 @@ public class Computer {
     }
 
     public void turnOff() {
-        Scanner scanner = new Scanner(System.in);
         Scanner random;
         int i = (int) (Math.random() * 2);
         System.out.print("Введите число 0 или 1: ");
-        int num = scanner.nextInt();
+        int num = scan.nextInt();
 
         if (i != num) {
             System.out.println("Компьютер выключен");

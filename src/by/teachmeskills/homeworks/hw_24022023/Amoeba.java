@@ -2,15 +2,11 @@ package by.teachmeskills.homeworks.hw_24022023;
 
 public class Amoeba {
     public static void main(String[] args) {
-        int a = 1;
-        int time = 24;
+        int ameba = 1;
 
-        while (time >= 3) {
-            for (int i = 0; i < time; i++) {
-                a *= 2;
-                time -= 3;
-                System.out.println(a);
-            }
+        for (int i = 3; i < 24; i += 3) {
+            ameba *= 2;
+            System.out.printf("Hours  %d, ameba counts  %d\n", i, ameba);
         }
     }
 }
