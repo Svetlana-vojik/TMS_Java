@@ -27,7 +27,7 @@ public class MilitaryTransport extends AirTransport {
     }
 
     public void shot(int r) {
-        if (r > 0) {
+        if (r > 0 && r <= rocketsOnBoard && r != 0) {
             System.out.println("Ракета пошла");
         } else {
             System.out.println("Боеприпасы отсутствуют");

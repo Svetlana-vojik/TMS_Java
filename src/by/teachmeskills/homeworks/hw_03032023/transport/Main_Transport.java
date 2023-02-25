@@ -32,14 +32,14 @@ public class Main_Transport {
         //Проверки военного самолета
         System.out.println();
         System.out.println("Количество ракет на борту военного самолета " + militaryTransport.getBrand() + " = " + militaryTransport.getRocketsOnBoard());
-        System.out.println("Сколько ракет на борту?");
+        System.out.println("Сколько ракет нужно выпустить");
         int r = scan.nextInt();
         militaryTransport.shot(r);
         militaryTransport.checkEjectionSystem();
 
         //Проверки легкового транспорта
         System.out.println();
-        passengerTransport.distanceAtMaxSpeed(2.5);
+        passengerTransport.distanceAtMaxSpeed(1.5);
 
     }
 }
