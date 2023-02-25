@@ -3,15 +3,13 @@ package by.teachmeskills.homeworks.hw_03032023.calculator;
 public class Calculator {
     private int a;
     private int b;
-    private int c;
     private int sum;
     private int minus;
     private int multiply;
 
-    public Calculator(int a, int b, int c) {
+    public Calculator(int a, int b) {
         this.a = a;
         this.b = b;
-        this.c = c;
     }
 
     public int getA() {
@@ -30,23 +28,15 @@ public class Calculator {
         this.b = b;
     }
 
-    public int getC() {
-        return c;
-    }
-
-    public void setC(int c) {
-        this.c = c;
-    }
-
     public int sum() {
-        return a + b + c;
+        return a + b;
     }
 
     public int minus() {
-        return (a - b - c);
+        return (a - b);
     }
 
     public int multiply() {
-        return a * b * c;
+        return a * b;
     }
 }
