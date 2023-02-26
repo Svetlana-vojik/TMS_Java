@@ -136,4 +136,3 @@ public abstract class Animal {
         System.out.println("I'm walking!");
     }
 }
-

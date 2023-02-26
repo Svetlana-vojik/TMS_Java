@@ -8,13 +8,11 @@ public class Hippo extends Animal {
     @Override
     protected void makeNoise() {
         System.out.println("Growl-growl-growl");
-
     }
 
     @Override
     protected void eat() {
         System.out.println("Hippo eats grass");
-
     }
 
     @Override

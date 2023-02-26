@@ -8,19 +8,16 @@ public class Dog extends Canine{
     @Override
     protected void makeNoise() {
         System.out.println("Woof-woof");
-
     }
 
     @Override
     protected void eat() {
         System.out.println("Dog eats meat");
-
     }
 
     @Override
     protected void roam() {
         System.out.println("Dog lives in a flock");
-
     }
 
     @Override

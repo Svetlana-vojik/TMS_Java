@@ -13,13 +13,11 @@ public class Lion extends Feline{
     @Override
     protected void eat() {
         System.out.println("Lion eats meat");
-
     }
 
     @Override
     protected void roam() {
         System.out.println("Lion is walking alone!");
-
     }
 
     @Override
