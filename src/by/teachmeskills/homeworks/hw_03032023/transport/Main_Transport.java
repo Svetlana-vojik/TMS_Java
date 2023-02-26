@@ -40,6 +40,5 @@ public class Main_Transport {
         //Проверки легкового транспорта
         System.out.println();
         passengerTransport.distanceAtMaxSpeed(1.5);
-
     }
 }

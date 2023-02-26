@@ -13,6 +13,5 @@ public class Doublearray2 {
             }
             System.out.println();
         }
-
     }
 }

@@ -123,12 +123,16 @@ public abstract class Animal {
                     '}';
         }
     }
+
     protected abstract void makeNoise();
+
     protected abstract void eat();
-    protected void sleep(){
+
+    protected void sleep() {
         System.out.println("I'm sleeping!");
     }
-    protected void roam(){
+
+    protected void roam() {
         System.out.println("I'm walking!");
     }
 }
