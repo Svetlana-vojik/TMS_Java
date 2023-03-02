@@ -10,23 +10,23 @@ public class MilitaryTransport extends AirTransport {
         this.rocketsOnBoard = rocketsOnBoard;
     }
 
-    public boolean isEjectionSystem() {
+    protected boolean isEjectionSystem() {
         return ejectionSystem;
     }
 
-    public void setEjectionSystem(boolean ejectionSystem) {
+    protected void setEjectionSystem(boolean ejectionSystem) {
         this.ejectionSystem = ejectionSystem;
     }
 
-    public int getRocketsOnBoard() {
+    protected int getRocketsOnBoard() {
         return rocketsOnBoard;
     }
 
-    public void setRocketsOnBoard(int rocketsOnBoard) {
+    protected void setRocketsOnBoard(int rocketsOnBoard) {
         this.rocketsOnBoard = rocketsOnBoard;
     }
 
-    public void shot(int r) {
+    protected void shot(int r) {
         if (r > 0 && r <= rocketsOnBoard && r != 0) {
             System.out.println("Ракета пошла");
         } else {
@@ -34,7 +34,7 @@ public class MilitaryTransport extends AirTransport {
         }
     }
 
-    public void checkEjectionSystem() {
+    protected void checkEjectionSystem() {
         if (ejectionSystem == true) {
             System.out.println("Катапультирование прошло успешно");
         } else {

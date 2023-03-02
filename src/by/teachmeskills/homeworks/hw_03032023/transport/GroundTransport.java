@@ -10,19 +10,19 @@ public class GroundTransport extends Transport {
         this.fuelConsumption = fuelConsumption;
     }
 
-    public int getWheelNumber() {
+    protected int getWheelNumber() {
         return wheelNumber;
     }
 
-    public void setWheelNumber(int wheelNumber) {
+    protected void setWheelNumber(int wheelNumber) {
         this.wheelNumber = wheelNumber;
     }
 
-    public double getFuelConsumption() {
+    protected double getFuelConsumption() {
         return fuelConsumption;
     }
 
-    public void setFuelConsumption(double fuelConsumption) {
+    protected void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
 

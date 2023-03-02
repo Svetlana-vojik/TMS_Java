@@ -10,19 +10,19 @@ public class AirTransport extends Transport {
         this.minimumRunwayLength = minimumRunwayLength;
     }
 
-    public int getWingspan() {
+    protected int getWingspan() {
         return wingspan;
     }
 
-    public void setWingspan(int wingspan) {
+    protected  void setWingspan(int wingspan) {
         this.wingspan = wingspan;
     }
 
-    public int getMinimumRunwayLength() {
+    protected  int getMinimumRunwayLength() {
         return minimumRunwayLength;
     }
 
-    public void setMinimumRunwayLength(int minimumRunwayLength) {
+    protected  void setMinimumRunwayLength(int minimumRunwayLength) {
         this.minimumRunwayLength = minimumRunwayLength;
     }
 

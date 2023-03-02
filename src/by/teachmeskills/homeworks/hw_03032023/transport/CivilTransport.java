@@ -10,23 +10,23 @@ public class CivilTransport extends AirTransport {
         this.businessClass = businessClass;
     }
 
-    public int getPassengerNumber() {
+    protected  int getPassengerNumber() {
         return passengerNumber;
     }
 
-    public void setPassengerNumber(int passengerNumber) {
+    protected  void setPassengerNumber(int passengerNumber) {
         this.passengerNumber = passengerNumber;
     }
 
-    public boolean isBusinessClass() {
+    protected  boolean isBusinessClass() {
         return businessClass;
     }
 
-    public void setBusinessClass(boolean businessClass) {
+    protected  void setBusinessClass(boolean businessClass) {
         this.businessClass = businessClass;
     }
 
-    public void checkPassengerNumber(int p) {
+    protected  void checkPassengerNumber(int p) {
         if (p <= passengerNumber) {
             System.out.println("Самолет загружен");
         } else {
