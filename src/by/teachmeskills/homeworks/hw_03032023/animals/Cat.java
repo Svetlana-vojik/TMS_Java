@@ -1,13 +1,13 @@
 package by.teachmeskills.homeworks.hw_03032023.animals;
 
-public class Cat extends Feline{
+public class Cat extends Feline {
     public Cat(String picture, String food, int hunger, Boundaries boundaries, Location location) {
         super(picture, food, hunger, boundaries, location);
     }
 
-      @Override
+    @Override
     protected void makeNoise() {
-          System.out.println("Miaow");
+        System.out.println("Miaow");
     }
 
     @Override
@@ -19,6 +19,7 @@ public class Cat extends Feline{
     protected void roam() {
         System.out.println("Cat is walking alone!");
     }
+
     @Override
     public String toString() {
         return "Cat{" +
