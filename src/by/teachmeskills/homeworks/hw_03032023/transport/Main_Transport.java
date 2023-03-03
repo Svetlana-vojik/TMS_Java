@@ -17,21 +17,21 @@ public class Main_Transport {
 
         //Проверки Грузового транспорта
         System.out.println();
-        System.out.println("Грузоподъемность грузовика " + cargoTransport.getBrand() + " = " + cargoTransport.getCarryingCapacity() + " тонн");
+        System.out.println("Грузоподъемность грузовика " + cargoTransport.brand + " = " + cargoTransport.getCarryingCapacity() + " тонн");
         System.out.println("Сколько тон груза вы хотите загрузить?");
         int t = scan.nextInt();
         cargoTransport.checkCarryingCapacity(t);
 
         //Проверки гражданского самолета
         System.out.println();
-        System.out.println("У гражданского самолета " + civilTransport.getBrand() + " посадочных мест = " + civilTransport.getPassengerNumber());
+        System.out.println("У гражданского самолета " + civilTransport.brand + " посадочных мест = " + civilTransport.getPassengerNumber());
         System.out.println("Сколько посадочных мест необходимо?");
         int p = scan.nextInt();
         civilTransport.checkPassengerNumber(p);
 
         //Проверки военного самолета
         System.out.println();
-        System.out.println("Количество ракет на борту военного самолета " + militaryTransport.getBrand() + " = " + militaryTransport.getRocketsOnBoard());
+        System.out.println("Количество ракет на борту военного самолета " + militaryTransport.brand + " = " + militaryTransport.getRocketsOnBoard());
         System.out.println("Сколько ракет нужно выпустить");
         int r = scan.nextInt();
         militaryTransport.shot(r);

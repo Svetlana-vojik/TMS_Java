@@ -17,39 +17,7 @@ public class Transport {
         return power * 0.74;
     }
 
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String toString() {
+       public String toString() {
         return "мощность = " + power +
                 " лошадиная сила или " + horsePowerToKW() + " кВ, макисмальная скорость = " + maxSpeed +
                 " км/ч, масса = " + weight + " тонн, марка = " + brand + ", ";

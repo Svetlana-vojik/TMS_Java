@@ -27,13 +27,13 @@ public class PassengerTransport extends GroundTransport {
     }
 
     public double fuel(double d) {
-        return d * getFuelConsumption() / 100;
+        return d * fuelConsumption / 100;
     }
 
     public void distanceAtMaxSpeed(double t) {
-        double distance = t * getMaxSpeed();
-        System.out.println("За время " + t + " ч, автомобиль " + getBrand() + " двигаясь с максимальной скоростью " +
-                getMaxSpeed() + " км/ч проедет " + distance + " км и израсходует " + fuel(distance) + " литров топлива.");
+        double distance = t * maxSpeed;
+        System.out.println("За время " + t + " ч, автомобиль " + brand + " двигаясь с максимальной скоростью " +
+                maxSpeed + " км/ч проедет " + distance + " км и израсходует " + fuel(distance) + " литров топлива.");
     }
 
     @Override

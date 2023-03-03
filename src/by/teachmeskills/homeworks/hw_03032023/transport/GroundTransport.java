@@ -10,25 +10,8 @@ public class GroundTransport extends Transport {
         this.fuelConsumption = fuelConsumption;
     }
 
-    public int getWheelNumber() {
-        return wheelNumber;
-    }
-
-    public void setWheelNumber(int wheelNumber) {
-        this.wheelNumber = wheelNumber;
-    }
-
-    public double getFuelConsumption() {
-        return fuelConsumption;
-    }
-
-    public void setFuelConsumption(double fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
-    }
-
     @Override
     public String toString() {
         return super.toString() + " количество колес = " + wheelNumber + " шт., расход топлива " + fuelConsumption + " литр/100км., ";
     }
 }
-
