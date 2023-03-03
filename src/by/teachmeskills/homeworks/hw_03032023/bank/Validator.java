@@ -1,12 +1,25 @@
 package by.teachmeskills.homeworks.hw_03032023.bank;
 
 public class Validator {
-    public void validateCardNumber(long number) {
-        class CardNumber {
-            private long cardNumber;
 
-            private CardNumber(long cardNumber) {
+    public void validateCard(long number, String type, boolean name, String code, String date) {
+
+        class Card {
+            public long cardNumber;
+            public String cardType;
+            private boolean owner;
+            private String cvv;
+            private String expDate;
+
+            public Card(long cardNumber, String cardType, boolean owner, String cvv, String expDate) {
                 this.cardNumber = cardNumber;
+                this.cardType = cardType;
+                this.owner = owner;
+                this.cvv = cvv;
+                this.expDate = expDate;
+            }
+
+            public Card() {
             }
 
             public long getCardNumber() {
@@ -17,27 +30,6 @@ public class Validator {
                 this.cardNumber = cardNumber;
             }
 
-            private void validateCardNumber() {
-                int length = String.valueOf(cardNumber).length();
-                if (length == 16) {
-                    System.out.println("Card is right");
-                } else {
-                    System.out.println("Card is wrong");
-                }
-            }
-        }
-        CardNumber cardNumber = new CardNumber(number);
-        cardNumber.validateCardNumber();
-    }
-
-    public void validateCardType(String type) {
-        class CardType {
-            private String cardType;
-
-            private CardType(String cardType) {
-                this.cardType = cardType;
-            }
-
             public String getCardType() {
                 return cardType;
             }
@@ -46,52 +38,12 @@ public class Validator {
                 this.cardType = cardType;
             }
 
-            private void validateCardType() {
-                if (cardType.contains("VISA")) {
-                    System.out.println("Card is right");
-                } else {
-                    System.out.println("Card is wrong");
-                }
-            }
-        }
-        CardType cardType = new CardType(type);
-        cardType.validateCardType();
-    }
-
-    public void validateOwner(boolean name) {
-        class Owner {
-            private boolean owner;
-
-            private Owner(boolean owner) {
-                this.owner = owner;
-            }
-
-            public boolean getOwner() {
+            public boolean isOwner() {
                 return owner;
             }
 
             public void setOwner(boolean owner) {
                 this.owner = owner;
-            }
-
-            private void validateOwner() {
-                if (owner) {
-                    System.out.println("Card is right");
-                } else {
-                    System.out.println("Card is wrong");
-                }
-            }
-        }
-        Owner owner = new Owner(name);
-        owner.validateOwner();
-    }
-
-    public void validateCVV(String code) {
-        class CVV {
-            private String cvv;
-
-            private CVV(String cvv) {
-                this.cvv = cvv;
             }
 
             public String getCvv() {
@@ -102,27 +54,7 @@ public class Validator {
                 this.cvv = cvv;
             }
 
-            private void validateCVV() {
-                if (cvv.matches("^[\\d]{3}$")) {
-                    System.out.println("Card is right");
-                } else {
-                    System.out.println("Card is wrong");
-                }
-            }
-        }
-        CVV cvv = new CVV(code);
-        cvv.validateCVV();
-    }
-
-    public void validateExpiryDate(String date) {
-        class ExpiryDate {
-            private String expDate;
-
-            public ExpiryDate(String expDate) {
-                this.expDate = expDate;
-            }
-
-            public String isExpDate() {
+            public String getExpDate() {
                 return expDate;
             }
 
@@ -130,15 +62,52 @@ public class Validator {
                 this.expDate = expDate;
             }
 
-            private void validateExpiryDate() {
-                if (expDate.matches("(?:0[1-9]|1[0-2])/[2-9]{2}")) {
-                    System.out.println("Card is right");
+            public void validateCardNumber(long cardNumber) {
+                int length = String.valueOf(cardNumber).length();
+                if (length == 16) {
+                    System.out.println("Card number is right");
                 } else {
-                    System.out.println("Card is wrong");
+                    System.out.println("Card number is wrong");
+                }
+            }
+
+            private void validateCardType(String cardType) {
+                if (cardType.contains("VISA")) {
+                    System.out.println("Card type is right");
+                } else {
+                    System.out.println("Card type is wrong");
+                }
+            }
+
+            private void validateOwner(boolean owner) {
+                if (owner) {
+                    System.out.println("Card has owner");
+                } else {
+                    System.out.println("Card has not owner");
+                }
+            }
+
+            private void validateCVV(String cvv) {
+                if (cvv.matches("^[\\d]{3}$")) {
+                    System.out.println("CVV is right");
+                } else {
+                    System.out.println("CVV is wrong");
+                }
+            }
+
+            private void validateExpiryDate(String expDate) {
+                if (expDate.matches("(?:0[1-9]|1[0-2])/[2-9]{2}")) {
+                    System.out.println("Expiry Date is right");
+                } else {
+                    System.out.println("Expiry Date is wrong");
                 }
             }
         }
-        ExpiryDate expiryDate = new ExpiryDate(date);
-        expiryDate.validateExpiryDate();
+        Card card = new Card();
+        card.validateCardNumber(number);
+        card.validateCardType(type);
+        card.validateOwner(name);
+        card.validateCVV(code);
+        card.validateExpiryDate(date);
     }
 }

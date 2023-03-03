@@ -1,8 +1,8 @@
 package by.teachmeskills.homeworks.hw_03032023.transport;
 
 public class AirTransport extends Transport {
-    private int wingspan;
-    private int minimumRunwayLength;
+    protected int wingspan;
+    protected int minimumRunwayLength;
 
     public AirTransport(int power, int maxSpeed, int weight, String brand, int wingspan, int minimumRunwayLength) {
         super(power, maxSpeed, weight, brand);
@@ -10,19 +10,19 @@ public class AirTransport extends Transport {
         this.minimumRunwayLength = minimumRunwayLength;
     }
 
-    protected int getWingspan() {
+    public int getWingspan() {
         return wingspan;
     }
 
-    protected  void setWingspan(int wingspan) {
+    public  void setWingspan(int wingspan) {
         this.wingspan = wingspan;
     }
 
-    protected  int getMinimumRunwayLength() {
+    public  int getMinimumRunwayLength() {
         return minimumRunwayLength;
     }
 
-    protected  void setMinimumRunwayLength(int minimumRunwayLength) {
+    public  void setMinimumRunwayLength(int minimumRunwayLength) {
         this.minimumRunwayLength = minimumRunwayLength;
     }
 

@@ -35,19 +35,5 @@ public class Main {
                 System.out.println("--------------------------------------");
             }
         }
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Введите пункт, который вы хотите выполнить:\n1.Создать животное.\n2.Вывести информацию о животном по картинке.\n" +
-//                "3.Изменить характеристики животного по картинке.\n4.далить животное по его картинке.\n5.Exit - выход из программы.");
-//        int menu = scan.nextInt();
-//        if (menu == 1) {
-//            System.out.println("Загрузите фото:");
-//            animals.length = scan.nextLine();
-//            System.out.println("Что ест животное:");
-//            Animal.food = scan.nextLine();
-//            System.out.println("Уровень голода:");
-//            Animal.hunger = scan.nextInt();
-//            Animal animal = new Animal(A);
-
-        }
-
     }
+}

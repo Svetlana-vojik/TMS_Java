@@ -8,15 +8,15 @@ public class CargoTransport extends GroundTransport {
         this.carryingCapacity = carryingCapacity;
     }
 
-    protected  int getCarryingCapacity() {
+    public int getCarryingCapacity() {
         return carryingCapacity;
     }
 
-    protected  void setCarryingCapacity(int carryingCapacity) {
+    public void setCarryingCapacity(int carryingCapacity) {
         this.carryingCapacity = carryingCapacity;
     }
 
-    protected  void checkCarryingCapacity(int t) {
+    public void checkCarryingCapacity(int t) {
         if (t <= carryingCapacity) {
             System.out.println("Грузовик загружен");
         } else {

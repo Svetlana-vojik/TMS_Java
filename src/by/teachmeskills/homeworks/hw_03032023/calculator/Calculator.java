@@ -3,9 +3,6 @@ package by.teachmeskills.homeworks.hw_03032023.calculator;
 public class Calculator {
     private int a;
     private int b;
-    private int sum;
-    private int minus;
-    private int multiply;
 
     public Calculator(int a, int b) {
         this.a = a;

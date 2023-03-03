@@ -10,27 +10,27 @@ public class PassengerTransport extends GroundTransport {
         this.passengerNumber = passengerNumber;
     }
 
-    protected String getBodyType() {
+    public String getBodyType() {
         return bodyType;
     }
 
-    protected void setBodyType(String bodyType) {
+    public void setBodyType(String bodyType) {
         this.bodyType = bodyType;
     }
 
-    protected int getPassengerNumber() {
+    public int getPassengerNumber() {
         return passengerNumber;
     }
 
-    protected void setPassengerNumber(int passengerNumber) {
+    public void setPassengerNumber(int passengerNumber) {
         this.passengerNumber = passengerNumber;
     }
 
-    protected double fuel(double d) {
+    public double fuel(double d) {
         return d * getFuelConsumption() / 100;
     }
 
-    protected void distanceAtMaxSpeed(double t) {
+    public void distanceAtMaxSpeed(double t) {
         double distance = t * getMaxSpeed();
         System.out.println("За время " + t + " ч, автомобиль " + getBrand() + " двигаясь с максимальной скоростью " +
                 getMaxSpeed() + " км/ч проедет " + distance + " км и израсходует " + fuel(distance) + " литров топлива.");

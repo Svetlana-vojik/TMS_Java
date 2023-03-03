@@ -1,8 +1,8 @@
 package by.teachmeskills.homeworks.hw_03032023.transport;
 
 public class GroundTransport extends Transport {
-    private int wheelNumber;
-    private double fuelConsumption;
+    protected int wheelNumber;
+    protected double fuelConsumption;
 
     public GroundTransport(int power, int maxSpeed, int weight, String brand, int wheelNumber, double fuelConsumption) {
         super(power, maxSpeed, weight, brand);
@@ -10,19 +10,19 @@ public class GroundTransport extends Transport {
         this.fuelConsumption = fuelConsumption;
     }
 
-    protected int getWheelNumber() {
+    public int getWheelNumber() {
         return wheelNumber;
     }
 
-    protected void setWheelNumber(int wheelNumber) {
+    public void setWheelNumber(int wheelNumber) {
         this.wheelNumber = wheelNumber;
     }
 
-    protected double getFuelConsumption() {
+    public double getFuelConsumption() {
         return fuelConsumption;
     }
 
-    protected void setFuelConsumption(double fuelConsumption) {
+    public void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
 
