@@ -1,6 +1,6 @@
 package by.teachmeskills.homeworks.hw_03032023.animals;
 
-public class Wolf extends Canine{
+public class Wolf extends Canine {
     public Wolf(String picture, String food, int hunger, Boundaries boundaries, Location location) {
         super(picture, food, hunger, boundaries, location);
     }
