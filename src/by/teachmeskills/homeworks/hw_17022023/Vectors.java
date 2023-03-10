@@ -28,8 +28,6 @@ public class Vectors {
             multiply = multiply * array[i];
         }
         System.out.println("Произведение: " + multiply);
-
         System.out.println("Max: " + array[min] + "; " + "Min: " + array[max]);
     }
 }
-

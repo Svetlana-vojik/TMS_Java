@@ -19,8 +19,6 @@ public class Round {
             System.out.println("Можно");
         } else {
             System.out.println("Нельзя");
-
         }
-
     }
 }

@@ -6,7 +6,6 @@ public class DaysOfTheWeek {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int day = scan.nextInt();
-//      int day = 5;
 
         switch (day) {
             case 1 -> System.out.println("Понедельник");
