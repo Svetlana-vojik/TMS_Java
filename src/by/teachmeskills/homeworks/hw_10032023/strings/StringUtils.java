@@ -1,35 +1,6 @@
 package by.teachmeskills.homeworks.hw_10032023.strings;
 
 public class StringUtils {
-    public static void main(String[] args) {
-        String str1 = "Сегодня первый день весны!";
-        String str2 = "Око за око, зуб за зуб";
-        StringBuilder sb = replaceCharacter(new StringBuilder("3 + 2 = 5"));
-        StringBuilder stringBuilder = returnAppend(3, 56);
-
-        lastCharacter(str1);
-        System.out.println("-------------------------");
-        lastThreeCharacter(str1);
-        System.out.println("-------------------------");
-        firstCharacters(str1);
-        System.out.println("-------------------------");
-        toLowerCase(str1);
-        System.out.println("-------------------------");
-        toUpperCase(str1);
-        System.out.println("-------------------------");
-        System.out.println(sb);
-        System.out.println("-------------------------");
-        split(str1);
-        System.out.println("-------------------------");
-        System.out.print(stringBuilder);
-        System.out.println("-------------------------");
-        returnData(str1);
-        System.out.println("-------------------------");
-        twoStrings("good", "days");
-        System.out.println("-------------------------");
-        isPalindrome("Око за око, зуб за зуб");
-    }
-
     public static void lastCharacter(String str) {
         int n = str.length();
         char last = str.charAt(n - 1);
@@ -61,7 +32,7 @@ public class StringUtils {
         System.out.println("If the string have word:" + contains);
     }
 
-    private static StringBuilder returnAppend(int a, int b) {
+    static StringBuilder returnAppend(int a, int b) {
         StringBuilder result = new StringBuilder();
         result.append(a).append(" + ").append(b).append(" = ").append(a + b).append("\n");
         result.append(a).append(" - ").append(b).append(" = ").append(a + b).append("\n");
@@ -95,11 +66,10 @@ public class StringUtils {
         StringBuilder buffer = new StringBuilder(text);
         buffer.reverse();
         String data = buffer.toString();
-        if (text.equals(data)){
+        if (text.equals(data)) {
             System.out.println("Палиндром");
-        }else{
+        } else {
             System.out.println("Не палиндром");
         }
     }
 }
-

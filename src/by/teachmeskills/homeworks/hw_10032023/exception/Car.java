@@ -6,7 +6,7 @@ public class Car {
     private String brand;
     private int speed;
     private int price;
-    private boolean flagStart = false;
+    private boolean flagStart;
 
     public Car(String brand, int speed, int price) {
         this.brand = brand;

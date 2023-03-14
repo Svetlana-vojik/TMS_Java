@@ -1,5 +1,6 @@
 package by.teachmeskills.homeworks.hw_10032023.enumeration;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class University {
@@ -7,14 +8,15 @@ public class University {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите количество учащихся: ");
         int numberOfStudents = scan.nextInt();
+        System.out.println("Введите пору года: ");
+        String currentSeason = scan.next();
 
-        Season current = Season.SUMMER;
-
-        switch (current) {
-            case WINTER, SPRING, AUTUMN ->
-                    System.out.println("Школа №888, учащихся " + numberOfStudents + ", сейчас мы учимся.");
-            case SUMMER -> System.out.println("Школа №888, учащихся " + numberOfStudents + ", отдыхаем");
-        }
+        if (Objects.equals(currentSeason, "Зима") ||Objects.equals(currentSeason, "Осень") ||Objects.equals(currentSeason, "Весна")) {
+            System.out.println("Школа №888, учащихся " + numberOfStudents + ", сейчас мы учимся.");
+        } else if (Objects.equals(currentSeason, "Лето")) {
+            System.out.println("Школа №888, учащихся " + numberOfStudents + ", отдыхаем");
+        }else {
+        System.out.println("Такой поры года не существует");}
     }
 
     public enum Season {
@@ -30,6 +32,7 @@ public class University {
         }
 
         public String getName() {
+
             return name;
         }
     }

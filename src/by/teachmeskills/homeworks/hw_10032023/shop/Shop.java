@@ -6,14 +6,12 @@ import java.util.List;
 public class Shop {
     private List<Product> products;
 
-
     public Shop(List<Product> products) {
-
         this.products = products;
     }
 
     public Shop() {
-        products = new ArrayList<>();
+        products = new ArrayList<>(0);
     }
 
     public void addProduct(Product product) throws EntityAlreadyExistsException {
@@ -37,24 +35,19 @@ public class Shop {
                 return;
             }
         }
-        for (Product p : products) {
-            if (p.getId() != id) {
-                throw new EntityNotFoundException("Product with <id> not found");
-            }
-        }
-        throw new EmptyProductListException();
+        throw new EntityNotFoundException("Product with <id> not found");
     }
 
-
     public void editProduct(Product product) throws EmptyProductListException, EntityNotFoundException {
-        if (products.isEmpty()) {
-            throw new EmptyProductListException();
-        } else if (!products.contains(product)) {
+        if (!products.contains(product)) {
             throw new EntityNotFoundException("Product with <id> not found");
+        } else if (products.isEmpty()) {
+            throw new EmptyProductListException();
         }
         int x = products.indexOf(product);
         products.set(x, product);
     }
+
 
     public List<Product> getProducts() {
         return products;
