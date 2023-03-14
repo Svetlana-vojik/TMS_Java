@@ -8,15 +8,17 @@ public class University {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите количество учащихся: ");
         int numberOfStudents = scan.nextInt();
+        scan.nextLine();
         System.out.println("Введите пору года: ");
-        String currentSeason = scan.next();
+        String currentSeason = scan.nextLine();
 
-        if (Objects.equals(currentSeason, "Зима") ||Objects.equals(currentSeason, "Осень") ||Objects.equals(currentSeason, "Весна")) {
+        if (Season.WINTER.getName().equals(currentSeason) || Season.AUTUMN.getName().equals(currentSeason) || Season.SPRING.getName().equals(currentSeason)) {
             System.out.println("Школа №888, учащихся " + numberOfStudents + ", сейчас мы учимся.");
-        } else if (Objects.equals(currentSeason, "Лето")) {
+        } else if (Season.SUMMER.getName().equals(currentSeason)) {
             System.out.println("Школа №888, учащихся " + numberOfStudents + ", отдыхаем");
-        }else {
-        System.out.println("Такой поры года не существует");}
+        } else {
+            System.out.println("Такой поры года не существует");
+        }
     }
 
     public enum Season {
