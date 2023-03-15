@@ -11,7 +11,7 @@ public class Shop {
     }
 
     public Shop() {
-        products = new ArrayList<>(0);
+        products = new ArrayList<>();
     }
 
     public void addProduct(Product product) throws EntityAlreadyExistsException {
@@ -29,20 +29,24 @@ public class Shop {
     }
 
     public void deleteProduct(int id) throws EmptyProductListException, EntityNotFoundException {
-        for (Product p : products) {
-            if (p.getId() == id) {
-                products.remove(p);
-                return;
+        if (products.isEmpty()) {
+            throw new EmptyProductListException("No products found");
+        } else {
+            for (Product p : products) {
+                if (p.getId() == id) {
+                    products.remove(p);
+                    return;
+                }
             }
+            throw new EntityNotFoundException("Product with <id> not found");
         }
-        throw new EntityNotFoundException("Product with <id> not found");
     }
 
     public void editProduct(Product product) throws EmptyProductListException, EntityNotFoundException {
-        if (!products.contains(product)) {
-            throw new EntityNotFoundException("Product with <id> not found");
-        } else if (products.isEmpty()) {
+        if (products.isEmpty()) {
             throw new EmptyProductListException("No products found");
+        } else if (!products.contains(product)) {
+            throw new EntityNotFoundException("Product with <id> not found");
         }
         int x = products.indexOf(product);
         products.set(x, product);

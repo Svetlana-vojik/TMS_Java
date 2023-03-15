@@ -21,33 +21,30 @@ public class Main {
         } catch (EntityAlreadyExistsException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("\nИсходный список:");
+        System.out.println("\nИсходный список: " + "\n" + shop.getProducts() + "\n");
 
         try {
-            System.out.println(shop.getAllProducts() + "\n");
+            List<Product> listSortByPrice = new ArrayList<>(shop.getAllProducts());
+            System.out.println("Сортировка по цене по возрастанию: ");
+            listSortByPrice.sort(new SortByPriceComparator());
+            System.out.println(listSortByPrice);
+            System.out.println();
         } catch (EmptyProductListException e) {
             System.out.println(e.getMessage());
         }
 
-        List<Product> listSortByPrice = new ArrayList<>(shop.getAllProducts());
-        System.out.println("Сортировка по цене по возрастанию: ");
-        listSortByPrice.sort(new SortByPriceComparator());
-        System.out.println(listSortByPrice);
-        System.out.println();
-
         try {
-            shop.deleteProduct(8);
+            shop.deleteProduct(2);
         } catch (EntityNotFoundException | EmptyProductListException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Список после удаления: " + shop.getAllProducts() + "\n");
+        System.out.println("Список после удаления: " + shop.getProducts() + "\n");
 
         try {
             shop.editProduct(new Product(3, "carrot", 7));
         } catch (EmptyProductListException | EntityNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println("Список после редактирования: " + shop.getAllProducts());
+        System.out.println("Список после редактирования: " + shop.getProducts());
     }
 }

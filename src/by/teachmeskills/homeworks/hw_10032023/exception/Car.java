@@ -14,11 +14,11 @@ public class Car {
         this.price = price;
     }
 
-    public void start() throws CustomException {
+    public void start() throws CarStartException {
         Random random = new Random();
         int xR = random.nextInt(21);
         if (xR % 2 == 0) {
-            throw new CustomException("Ошибка! Cгенерировалось четное число и автомобиль " + brand + " не завелся");
+            throw new CarStartException("Ошибка! Cгенерировалось четное число и автомобиль " + brand + " не завелся");
         }
         if (!flagStart) {
             System.out.println("Автомобиль " + brand + " заведён.");

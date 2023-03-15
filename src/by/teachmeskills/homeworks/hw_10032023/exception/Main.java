@@ -12,7 +12,7 @@ public class Main {
         for (Car car : cars) {
             try {
                 car.start();
-            } catch (CustomException e) {
+            } catch (CarStartException e) {
                 System.out.println(e.getMessage());
             }
         }
