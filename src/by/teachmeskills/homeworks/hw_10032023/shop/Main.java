@@ -7,7 +7,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws EmptyProductListException {
         Shop shop = new Shop();
-
         Product product0 = new Product(1, "cucumber", 4);
         Product product1 = new Product(2, "watermelon", 15);
         Product product2 = new Product(3, "carrot", 2);
@@ -26,24 +25,23 @@ public class Main {
         System.out.println("\nИсходный список:");
 
         try {
-            shop.getAllProducts();
+            System.out.println(shop.getAllProducts() + "\n");
         } catch (EmptyProductListException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(shop.getAllProducts() + "\n");
 
-        List<Product> listSortByPrice = new ArrayList<>(shop.getProducts());
+        List<Product> listSortByPrice = new ArrayList<>(shop.getAllProducts());
         System.out.println("Сортировка по цене по возрастанию: ");
         listSortByPrice.sort(new SortByPriceComparator());
         System.out.println(listSortByPrice);
         System.out.println();
 
         try {
-            shop.deleteProduct(5);
+            shop.deleteProduct(8);
         } catch (EntityNotFoundException | EmptyProductListException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Список после удаления: " + shop.getProducts() + "\n");
+        System.out.println("Список после удаления: " + shop.getAllProducts() + "\n");
 
         try {
             shop.editProduct(new Product(3, "carrot", 7));
@@ -51,6 +49,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Список после редактирования: " + shop.getProducts());
+        System.out.println("Список после редактирования: " + shop.getAllProducts());
     }
 }

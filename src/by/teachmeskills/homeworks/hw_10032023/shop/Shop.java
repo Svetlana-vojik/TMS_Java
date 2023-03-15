@@ -42,12 +42,11 @@ public class Shop {
         if (!products.contains(product)) {
             throw new EntityNotFoundException("Product with <id> not found");
         } else if (products.isEmpty()) {
-            throw new EmptyProductListException();
+            throw new EmptyProductListException("No products found");
         }
         int x = products.indexOf(product);
         products.set(x, product);
     }
-
 
     public List<Product> getProducts() {
         return products;
