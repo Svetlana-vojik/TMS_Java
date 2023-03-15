@@ -1,7 +1,6 @@
 package by.teachmeskills.homeworks.hw_10032023.shop;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Main {

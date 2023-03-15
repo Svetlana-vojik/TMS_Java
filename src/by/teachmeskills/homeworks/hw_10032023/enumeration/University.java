@@ -1,6 +1,5 @@
 package by.teachmeskills.homeworks.hw_10032023.enumeration;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class University {
@@ -29,12 +28,10 @@ public class University {
         private final String name;
 
         Season(String name) {
-
             this.name = name;
         }
 
         public String getName() {
-
             return name;
         }
     }
