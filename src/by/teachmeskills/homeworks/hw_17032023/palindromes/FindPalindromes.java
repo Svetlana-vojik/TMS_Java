@@ -1,4 +1,5 @@
 package by.teachmeskills.homeworks.hw_17032023.palindromes;
+
 import java.io.*;
 
 public class FindPalindromes {
@@ -8,7 +9,7 @@ public class FindPalindromes {
         try (BufferedReader reader = new BufferedReader(new FileReader(directory + "palindromes.txt"));
              BufferedWriter writer = new BufferedWriter(new FileWriter(directory + "findpalindromes.txt"))) {
             String line = reader.readLine();
-            while (line!= null) {
+            while (line != null) {
                 StringBuilder builder1 = new StringBuilder(line);
                 StringBuilder builder2 = new StringBuilder(builder1);
                 builder1.reverse();

@@ -19,7 +19,7 @@ public class Main {
                 }
             }
             String str;
-            while ((str =reader1.readLine())!= null) {
+            while ((str = reader1.readLine()) != null) {
                 if ((TextFormatter.checkPalindromes(str) || TextFormatter.returnWordNumber(str) >= 3 && TextFormatter.returnWordNumber(str) <= 5)) {
                     writer.write(str + "\n");
                     writer.flush();
