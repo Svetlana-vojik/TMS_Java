@@ -3,11 +3,11 @@ package by.teachmeskills.homeworks.hw_17032023.palindromes;
 import java.io.*;
 
 public class FindPalindromes {
-    public static final String directory = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";
+    public static final String FILE_PATH = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";
 
     public static void main(String[] args) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(directory + "palindromes.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(directory + "findpalindromes.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH + "palindromes.txt"));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + "findpalindromes.txt"))) {
             String line = reader.readLine();
             while (line != null) {
                 StringBuilder builder1 = new StringBuilder(line);

@@ -3,13 +3,13 @@ package by.teachmeskills.homeworks.hw_17032023.text;
 import java.io.*;
 
 public class Main {
-    public static final String directory = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";
+    public static final String FILE_PATH = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";
 
     public static void main(String[] args) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(directory + "text1.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(directory + "text1out.txt"));
-             BufferedReader reader1 = new BufferedReader(new FileReader(directory + "sentences.txt"));
-             BufferedWriter writer1 = new BufferedWriter(new FileWriter(directory + "sentences.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH + "text1.txt"));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + "text1out.txt"));
+             BufferedReader reader1 = new BufferedReader(new FileReader(FILE_PATH + "sentences.txt"));
+             BufferedWriter writer1 = new BufferedWriter(new FileWriter(FILE_PATH + "sentences.txt"))) {
             String list;
             while ((list = reader.readLine()) != null) {
                 String[] array = list.split("\\.");
