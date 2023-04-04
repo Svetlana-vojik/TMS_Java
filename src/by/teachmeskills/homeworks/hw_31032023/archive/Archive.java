@@ -16,9 +16,11 @@ public class Archive {
     public static final String FILE_NAME2 = "file2.txt";
     public static final String FILE_NAME3 = "file3.txt";
     public static final String ARCHIVE_PATH = "C:\\Users\\svetlana.ezheleva\\Desktop\\data\\output.zip";
+    public static final String DIR = "C:\\Users\\svetlana.ezheleva\\Desktop\\data";
+    public static final String NEW_DIR = "C:\\Users\\svetlana.ezheleva\\Desktop\\newdata";
 
     public static void main(String[] args) {
-        File dir = new File("C:\\Users\\svetlana.ezheleva\\Desktop\\data");
+        File dir = new File(DIR);
 
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(ARCHIVE_PATH));
              FileInputStream fis1 = new FileInputStream(FILE_PATH1);
@@ -46,7 +48,7 @@ public class Archive {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        File newDir = new File("C:\\Users\\svetlana.ezheleva\\Desktop\\newdata");
+        File newDir = new File(NEW_DIR);
         dir.renameTo(newDir);
 
         if (newDir.isDirectory()) {

@@ -1,12 +1,22 @@
 package by.teachmeskills.homeworks.hw_31032023.collection;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class DocValidator {
     private static final ArrayList<String> docPaths = new ArrayList<>();
     private static final HashSet<String> docNumber = new HashSet<>();
     private static final HashMap<String, String> docValidation = new HashMap<>();
+    public static final String REPORT = "src\\by\\teachmeskills\\homeworks\\hw_31032023\\files\\report.txt";
 
     public static void enterDocPath() {
         try (Scanner scan = new Scanner(System.in);) {
@@ -60,7 +70,7 @@ public class DocValidator {
     }
 
     public static void createReport() {
-        try (BufferedWriter bf = new BufferedWriter(new FileWriter("src\\by\\teachmeskills\\homeworks\\hw_31032023\\files\\report.txt"))) {
+        try (BufferedWriter bf = new BufferedWriter(new FileWriter(REPORT))) {
             for (Map.Entry<String, String> record : docValidation.entrySet()) {
                 bf.write(record.getKey() + record.getValue() + '\n');
             }
