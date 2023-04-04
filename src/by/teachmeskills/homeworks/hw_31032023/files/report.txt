@@ -1,0 +1,6 @@
+contract+25865j -invalid, incorrect name of the document, illegal character "+".
+contract35AND23- valid
+docnum3515- invalid, incorrect length
+gftyjnjct35A120- invalid, incorrect name of the document. The doc number have to be started with "contract" or "docnum".
+contract_2586253gju - invalid, incorrect length and illegal character "_".
+docnum35A- invalid, incorrect length
