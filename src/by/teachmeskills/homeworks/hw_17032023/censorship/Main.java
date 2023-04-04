@@ -1,16 +1,18 @@
 package by.teachmeskills.homeworks.hw_17032023.censorship;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static final String FILE_PATH ="src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\censor.txt";
+    public static final String BLACK_WORDS ="src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\black_list.txt";
     public static void main(String[] args) {
         try {
-            String[] text = new String(Files.readAllBytes(Paths.get("src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\censor.txt"))).split("\\.");
-            List<String> blackWords = Files.readAllLines(Paths.get("src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\black_list.txt"));
+            String[] text = new String(Files.readAllBytes(Paths.get(FILE_PATH))).split("\\.");
+            List<String> blackWords = Files.readAllLines(Paths.get(BLACK_WORDS));
             List<String> wrongSentences = new ArrayList<>();
             for (String blackWord : blackWords) {
                 for (String sentence : text) {

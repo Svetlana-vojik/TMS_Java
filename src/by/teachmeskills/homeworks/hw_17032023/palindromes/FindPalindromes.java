@@ -1,6 +1,10 @@
 package by.teachmeskills.homeworks.hw_17032023.palindromes;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FindPalindromes {
     public static final String FILE_PATH = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";

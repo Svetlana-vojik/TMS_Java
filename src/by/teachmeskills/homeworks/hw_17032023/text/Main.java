@@ -1,6 +1,10 @@
 package by.teachmeskills.homeworks.hw_17032023.text;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static final String FILE_PATH = "src\\by\\teachmeskills\\homeworks\\hw_17032023\\files\\";
