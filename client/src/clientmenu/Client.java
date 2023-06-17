@@ -37,34 +37,34 @@ public class Client {
             switch (scanner.nextInt()) {
                 case 1 -> {
                     System.out.print("Введите id мерчента, о банковских аккаунтах которого нужно предоставить информацию: ");
-                    String idScanner = scanner.nextLine();
+                    String idScanner = scanner.next();
                     Merchant merchant = merchantService.getMerchantById(idScanner);
                     List<BankAccount> listBank = merchantService.getMerchantBankAccounts(merchant);
                     listBank.forEach(s -> System.out.printf("Аккаунт: номер - %s; status - %s; дата - %s\n", s.getAccountNumber(), s.getStatus(), s.getCreatedTime()));
                 }
                 case 2 -> {
-                    System.out.println("Введите id мерчанта, которому нужно добавить новый банковский аккаунт");
-                    String idScanner = scanner.nextLine();
+                    System.out.println("Введите id мерчента, которому нужно добавить новый банковский аккаунт:");
+                    String idScanner = scanner.next();
                     Merchant merchant = merchantService.getMerchantById(idScanner);
                     System.out.print("Введите номер банковского аккаунта мерчента: ");
-                    String idScannerAccount = scanner.nextLine();
-                    BankAccount bankAccount = new BankAccount(idScanner, AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
+                    String idScannerAccount = scanner.next();
+                    BankAccount bankAccount = new BankAccount(AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
                     merchantService.addBankAccount(merchant, bankAccount);
                 }
                 case 3 -> {
                     System.out.print("Введите id мерчента, у которого редактируется аккаунт: ");
-                    String idScanner = scanner.nextLine();
-                    Merchant merchant = merchantService.getMerchantById(idScanner);
+                    String idScanner = scanner.next();
+                  Merchant merchant = merchantService.getMerchantById(idScanner);
                     System.out.print("Введите номер аккаунта, которое редактируется: ");
-                    String idScannerAccount = scanner.nextLine();
+                    String idScannerAccount = scanner.next();
                     System.out.print("Введите новый номер аккаунта: ");
                     String newIdScannerAccount = scanner.nextLine();
-                    BankAccount tempBankAccount = new BankAccount(merchant.getId(), AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
-                    merchantService.updateBankAccount(tempBankAccount, newIdScannerAccount);
+                    BankAccount newBankAccount = new BankAccount(AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
+                    merchantService.updateBankAccount(newBankAccount, newIdScannerAccount);
                 }
                 case 4 -> {
                     System.out.print("Введите id мерчента, аккаунт которого надо удалить: ");
-                    String idScanner = scanner.nextLine();
+                    String idScanner = scanner.next();
                     Merchant merchant = merchantService.getMerchantById(idScanner);
                     List<BankAccount> listAccounts = merchantService.getMerchantBankAccounts(merchant);
                     System.out.print("Введите номер аккаунта, который надо удалить: ");
@@ -77,7 +77,7 @@ public class Client {
 
                 case 5 -> {
                     System.out.print("Введите id мерчента, о котором надо получить информацию: ");
-                    String idScanner = scanner.nextLine();
+                    String idScanner = scanner.next();
                     Merchant merchant = merchantService.getMerchantById(idScanner);
                     System.out.printf("Мерчант: ID - %s; имя - %s; дата создания - %s\n", merchant.getId(), merchant.getName(), merchant.getCreatedAt());
                 }
@@ -86,7 +86,7 @@ public class Client {
                         System.out.printf("Мерчант: ID - %s; имя - %s; дата создания - %s\n", s.getId(), s.getName(), s.getCreatedAt()));
                 case 7 -> {
                     System.out.print("Введите название мерчанта: ");
-                    String nameMerchantSc = scanner.nextLine();
+                    String nameMerchantSc = scanner.next();
                     String id = String.valueOf(UUID.randomUUID());
                     LocalDateTime createdAt = LocalDateTime.now();
                     Merchant merchant = new Merchant(id, nameMerchantSc, createdAt);
@@ -94,7 +94,7 @@ public class Client {
                 }
                 case 8 -> {
                     System.out.print("Введите id мерчента, которое хотите удалить: ");
-                    String idDelete = scanner.nextLine();
+                    String idDelete = scanner.next();
                     if (merchantService.deleteMerchant(idDelete)) {
                         System.out.println("Мерчент с id - " + idDelete + " успешно удален!");
                     }

@@ -8,38 +8,38 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static tmspaymentsystem.FilesPathes.FILE_BANK_ACCOUNT;
 import static tmspaymentsystem.FilesPathes.FILE_MERCHANT;
 
 
-public record MerchantService(List<Merchant> merchants) {
+public class MerchantService {
+
+    private List<Merchant> merchants;
+
     public MerchantService(List<Merchant> merchants) {
-        this.merchants = new ArrayList<>();
+        this.merchants = merchants;
     }
+
 
     public void addBankAccount(Merchant merchant, BankAccount bankAccount) {
         if (Stream.of(bankAccount).anyMatch(s -> bankAccount.getAccountNumber().length() != 8 && bankAccount.getAccountNumber().matches("^\\d+"))) {
             throw new IllegalArgumentException("Номер банковского аккаунта неверный");
-        }
-        BankAccount tempBankAccount = merchant.getBankAccounts().stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findFirst().orElse(null);
-        if (tempBankAccount != null) {
-            if (tempBankAccount.getStatus() == AccountStatus.DELETED) {
-                tempBankAccount.setStatus(AccountStatus.ACTIVE);
-            }
         } else {
-            merchant.setBankAccounts((List<BankAccount>) bankAccount);
-
-            try (FileWriter writer = new FileWriter(FILE_BANK_ACCOUNT + "bank_account.txt", true)) {
-                writer.write(merchant.getId() + " " + bankAccount.getStatus() + " "
-                        + bankAccount.getAccountNumber() + " " + bankAccount.getCreatedTime() + "\n");
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            Optional<BankAccount> accountOfBank = merchant.getBankAccounts().stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
+            accountOfBank.ifPresentOrElse(a -> Optional.of(a).filter(s -> s.getStatus().equals(AccountStatus.DELETED)).ifPresent(s -> s.setStatus(AccountStatus.ACTIVE)), () -> {
+                merchant.getBankAccounts().add(bankAccount);
+                try (FileWriter writer = new FileWriter(FILE_BANK_ACCOUNT, true)) {
+                    writer.write(bankAccount.getId() + " " + merchant.getId() + " " + bankAccount.getStatus() + " "
+                            + bankAccount.getAccountNumber() + " " + bankAccount.getCreatedTime() + "\n");
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            });
         }
     }
 
@@ -50,9 +50,12 @@ public record MerchantService(List<Merchant> merchants) {
         return merchant.getBankAccounts().stream().sorted(Comparator.comparing(BankAccount::getCreatedTime)).sorted(Comparator.comparing(BankAccount::getStatus)).toList();
     }
 
-    public void updateBankAccount(Merchant merchant, String number) throws BankAccountNotFoundException {
-        merchant.getBankAccounts().stream().filter(s -> s.getAccountNumber().equals(number)).findFirst().orElseThrow(
+    public void updateBankAccount(Merchant merchant,  String number) throws BankAccountNotFoundException, IOException, MerchantNotFoundException {
+               List<BankAccount> accounts = merchant.getBankAccounts();
+                      BankAccount newAccount = accounts.stream().filter(s -> s.getAccountNumber().equals(number)).findFirst().orElseThrow(
                 () -> new BankAccountNotFoundException("Банковский аккаунт не найден"));
+        newAccount.setAccountNumber(number);
+        Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
     }
 
 
@@ -66,8 +69,8 @@ public record MerchantService(List<Merchant> merchants) {
     }
 
     public void createMerchant(Merchant merchant) {
-           merchants.add(merchant);
-        try (FileWriter writer = new FileWriter(FILE_MERCHANT + "merchant.txt", true)) {
+        merchants.add(merchant);
+        try (FileWriter writer = new FileWriter(FILE_MERCHANT, true)) {
             writer.write(merchant.getId() + " " + merchant.getName() + " "
                     + merchant.getCreatedAt() + " " + "\n");
         } catch (IOException e) {
@@ -75,24 +78,16 @@ public record MerchantService(List<Merchant> merchants) {
         }
     }
 
-    public Merchant getMerchantById(String id) throws MerchantNotFoundException {
-        for (Merchant merchant : merchants) {
-            if (merchant.getId().equals(id)) {
-                System.out.println(merchant);
-            }
-        }
-        throw new MerchantNotFoundException("Такого пользователя нет");
+    public Merchant getMerchantById(String idScanner) throws MerchantNotFoundException {
+        return merchants.stream().filter(s -> s.getId().equals(idScanner)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
     }
 
-    public boolean deleteMerchant(String id) throws MerchantNotFoundException, IOException {
-        for (Merchant merchant : merchants) {
-            if (merchant.getId().equals(id)) {
-                merchants.remove(merchant);
-                Files.write(Path.of(FILE_MERCHANT), merchants.stream().map(Merchant::toString).toList());
-                Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
-            }
-        }
-        throw new MerchantNotFoundException("Такого пользователя нет");
+    public boolean deleteMerchant(String idDelete) throws MerchantNotFoundException, IOException {
+        Merchant merchant = merchants.stream().filter(s -> s.getId().equals(idDelete)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
+        merchants.remove(merchant);
+        Files.write(Path.of(FILE_MERCHANT), merchants.stream().map(Merchant::toString).toList());
+        Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
+        return true;
     }
 
     public List<Merchant> getMerchants() {

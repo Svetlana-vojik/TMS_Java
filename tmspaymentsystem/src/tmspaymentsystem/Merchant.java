@@ -1,6 +1,7 @@
 package tmspaymentsystem;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,6 +17,7 @@ public class Merchant {
     public Merchant(String id, String name, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
+        bankAccounts = new ArrayList<>();
         this.createdAt = createdAt;
     }
 
