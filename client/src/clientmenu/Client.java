@@ -48,33 +48,29 @@ public class Client {
                     Merchant merchant = merchantService.getMerchantById(idScanner);
                     System.out.print("Введите номер банковского аккаунта мерчента: ");
                     String idScannerAccount = scanner.next();
-                    BankAccount bankAccount = new BankAccount(AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
+                    BankAccount bankAccount = new BankAccount(merchant.getId(), AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
                     merchantService.addBankAccount(merchant, bankAccount);
                 }
                 case 3 -> {
                     System.out.print("Введите id мерчента, у которого редактируется аккаунт: ");
                     String idScanner = scanner.next();
-                  Merchant merchant = merchantService.getMerchantById(idScanner);
                     System.out.print("Введите номер аккаунта, которое редактируется: ");
                     String idScannerAccount = scanner.next();
                     System.out.print("Введите новый номер аккаунта: ");
-                    String newIdScannerAccount = scanner.nextLine();
-                    BankAccount newBankAccount = new BankAccount(AccountStatus.ACTIVE, idScannerAccount, LocalDateTime.now());
-                    merchantService.updateBankAccount(newBankAccount, newIdScannerAccount);
+                    String newIdScannerAccount = scanner.next();
+                    if (merchantService.updateBankAccount(idScannerAccount, newIdScannerAccount, idScanner)) {
+                        System.out.println("Аккаунт " + idScanner + " изменен");
+                    }
                 }
                 case 4 -> {
                     System.out.print("Введите id мерчента, аккаунт которого надо удалить: ");
                     String idScanner = scanner.next();
-                    Merchant merchant = merchantService.getMerchantById(idScanner);
-                    List<BankAccount> listAccounts = merchantService.getMerchantBankAccounts(merchant);
                     System.out.print("Введите номер аккаунта, который надо удалить: ");
-                    String idScannerDelete = scanner.nextLine();
-                    BankAccount bankAccount = listAccounts.stream().filter(a -> a.getAccountNumber().equals(idScannerDelete)).findFirst().get();
-                    if (merchantService.deleteBankAccount(bankAccount)) {
-                        System.out.println("Аккаунт " + idScannerDelete + "удален!");
+                    String idScannerDelete = scanner.next();
+                    if (merchantService.deleteBankAccount(idScannerDelete, idScanner)) {
+                        System.out.println("Аккаунт " + idScannerDelete + " удален!");
                     }
                 }
-
                 case 5 -> {
                     System.out.print("Введите id мерчента, о котором надо получить информацию: ");
                     String idScanner = scanner.next();

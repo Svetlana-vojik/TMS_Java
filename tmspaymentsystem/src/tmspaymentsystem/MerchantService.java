@@ -13,12 +13,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static tmspaymentsystem.FilesPathes.FILE_BANK_ACCOUNT;
-import static tmspaymentsystem.FilesPathes.FILE_MERCHANT;
+import static tmspaymentsystem.FilesPaths.FILE_BANK_ACCOUNT;
+import static tmspaymentsystem.FilesPaths.FILE_MERCHANT;
 
 
 public class MerchantService {
-
     private List<Merchant> merchants;
 
     public MerchantService(List<Merchant> merchants) {
@@ -50,19 +49,19 @@ public class MerchantService {
         return merchant.getBankAccounts().stream().sorted(Comparator.comparing(BankAccount::getCreatedTime)).sorted(Comparator.comparing(BankAccount::getStatus)).toList();
     }
 
-    public void updateBankAccount(Merchant merchant,  String number) throws BankAccountNotFoundException, IOException, MerchantNotFoundException {
-               List<BankAccount> accounts = merchant.getBankAccounts();
-                      BankAccount newAccount = accounts.stream().filter(s -> s.getAccountNumber().equals(number)).findFirst().orElseThrow(
-                () -> new BankAccountNotFoundException("Банковский аккаунт не найден"));
-        newAccount.setAccountNumber(number);
+    public boolean updateBankAccount(String bankAccountId, String newAccountNumber, String idScanner) throws BankAccountNotFoundException, IOException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(idScanner);
+        List<BankAccount> accounts = merchant.getBankAccounts();
+        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccountId)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
+        account.setAccountNumber(newAccountNumber);
         Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
+        return true;
     }
 
-
-    public boolean deleteBankAccount(BankAccount bankAccount) throws MerchantNotFoundException, BankAccountNotFoundException, IOException {
-        Merchant merchant = getMerchantById(bankAccount.getMerchantId());
+    public boolean deleteBankAccount(String idScannerDelete, String idScanner) throws BankAccountNotFoundException, MerchantNotFoundException, IOException {
+        Merchant merchant = getMerchantById(idScanner);
         List<BankAccount> accounts = merchant.getBankAccounts();
-        BankAccount account = accounts.stream().filter(s -> false).findAny().orElseThrow(() -> new BankAccountNotFoundException("Банковский аккаунт не найден"));
+        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(idScannerDelete)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
         accounts.remove(account);
         Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
         return true;

@@ -10,7 +10,7 @@ public class BankAccount extends Merchant{
     private String accountNumber;
     private LocalDateTime createdTime;
 
-    public BankAccount(AccountStatus status, String accountNumber, LocalDateTime createdTime) {
+    public BankAccount(String id, AccountStatus status, String accountNumber, LocalDateTime createdTime) {
         this.id = UUID.randomUUID().toString();;
         this.status = status;
         this.accountNumber = accountNumber;
