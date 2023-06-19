@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Merchant {
     private String id;
     private String name;
@@ -51,5 +50,15 @@ public class Merchant {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Merchant{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", bankAccounts=" + bankAccounts +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

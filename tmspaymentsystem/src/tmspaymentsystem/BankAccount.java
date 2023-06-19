@@ -3,7 +3,7 @@ package tmspaymentsystem;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class BankAccount extends Merchant{
+public class BankAccount extends Merchant {
     private String id;
     private String merchantId;
     private AccountStatus status;
@@ -11,7 +11,15 @@ public class BankAccount extends Merchant{
     private LocalDateTime createdTime;
 
     public BankAccount(String id, AccountStatus status, String accountNumber, LocalDateTime createdTime) {
-        this.id = UUID.randomUUID().toString();;
+        this.id = UUID.randomUUID().toString();
+        this.status = status;
+        this.accountNumber = accountNumber;
+        this.createdTime = createdTime;
+    }
+
+    public BankAccount(String id, String merchantId, AccountStatus status, String accountNumber, LocalDateTime createdTime) {
+        this.id = UUID.randomUUID().toString();
+        this.merchantId = merchantId;
         this.status = status;
         this.accountNumber = accountNumber;
         this.createdTime = createdTime;
@@ -57,4 +65,14 @@ public class BankAccount extends Merchant{
         this.createdTime = createdTime;
     }
 
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "id='" + id + '\'' +
+                ", merchantId='" + merchantId + '\'' +
+                ", status=" + status +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", createdTime=" + createdTime +
+                "} " + super.toString();
+    }
 }

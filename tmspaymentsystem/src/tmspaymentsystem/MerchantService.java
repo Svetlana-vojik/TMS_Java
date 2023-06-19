@@ -4,17 +4,18 @@ import tmspaymentsystem.exception.BankAccountNotFoundException;
 import tmspaymentsystem.exception.MerchantNotFoundException;
 import tmspaymentsystem.exception.NoBankAccountsFoundException;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static tmspaymentsystem.FilesPaths.FILE_BANK_ACCOUNT;
+import static tmspaymentsystem.FilesPaths.FILE_BANK_ACCOUNT_TEMP;
 import static tmspaymentsystem.FilesPaths.FILE_MERCHANT;
+import static tmspaymentsystem.FilesPaths.FILE_MERCHANT_TEMP;
 
 
 public class MerchantService {
@@ -25,8 +26,10 @@ public class MerchantService {
     }
 
 
-    public void addBankAccount(Merchant merchant, BankAccount bankAccount) {
-        if (Stream.of(bankAccount).anyMatch(s -> bankAccount.getAccountNumber().length() != 8 && bankAccount.getAccountNumber().matches("^\\d+"))) {
+    public void addBankAccount(String merchantId, String accountNumber) throws MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
+        BankAccount bankAccount = new BankAccount(merchantId, AccountStatus.ACTIVE, accountNumber, LocalDateTime.now());
+        if (accountNumber.length() != 8 && accountNumber.matches("^\\d+")) {
             throw new IllegalArgumentException("Номер банковского аккаунта неверный");
         } else {
             Optional<BankAccount> accountOfBank = merchant.getBankAccounts().stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
@@ -42,32 +45,37 @@ public class MerchantService {
         }
     }
 
-    public List<BankAccount> getMerchantBankAccounts(Merchant merchant) throws NoBankAccountsFoundException {
+    public List<BankAccount> getMerchantBankAccounts(String merchantId) throws NoBankAccountsFoundException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
         if (merchant.getBankAccounts().isEmpty()) {
             throw new NoBankAccountsFoundException("У этого пользователя нет аккаунта");
         }
-        return merchant.getBankAccounts().stream().sorted(Comparator.comparing(BankAccount::getCreatedTime)).sorted(Comparator.comparing(BankAccount::getStatus)).toList();
+        return merchant.getBankAccounts().stream()
+                .sorted(Comparator.comparing(BankAccount::getMerchantId))
+                .sorted(Comparator.comparing(BankAccount::getCreatedTime))
+                .sorted(Comparator.comparing(BankAccount::getStatus)).toList();
     }
 
-    public boolean updateBankAccount(String bankAccountId, String newAccountNumber, String idScanner) throws BankAccountNotFoundException, IOException, MerchantNotFoundException {
-        Merchant merchant = getMerchantById(idScanner);
+    public boolean updateBankAccount(String accountNumber, String newAccountNumber, String merchantId) throws BankAccountNotFoundException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
         List<BankAccount> accounts = merchant.getBankAccounts();
-        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccountId)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
+        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(accountNumber)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
         account.setAccountNumber(newAccountNumber);
-        Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
+        changeBankAccountFile();
         return true;
     }
 
-    public boolean deleteBankAccount(String idScannerDelete, String idScanner) throws BankAccountNotFoundException, MerchantNotFoundException, IOException {
-        Merchant merchant = getMerchantById(idScanner);
+    public boolean deleteBankAccount(String accountNumber, String merchantId) throws BankAccountNotFoundException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
         List<BankAccount> accounts = merchant.getBankAccounts();
-        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(idScannerDelete)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
+        BankAccount account = accounts.stream().filter(s -> s.getAccountNumber().equals(accountNumber)).findAny().orElseThrow(() -> new BankAccountNotFoundException("No bank account found!"));
         accounts.remove(account);
-        Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
+        changeBankAccountFile();
         return true;
     }
 
-    public void createMerchant(Merchant merchant) {
+    public void createMerchant(String id, String nameMerchantSc, LocalDateTime createdAt) {
+        Merchant merchant = new Merchant(id, nameMerchantSc, createdAt);
         merchants.add(merchant);
         try (FileWriter writer = new FileWriter(FILE_MERCHANT, true)) {
             writer.write(merchant.getId() + " " + merchant.getName() + " "
@@ -77,19 +85,64 @@ public class MerchantService {
         }
     }
 
-    public Merchant getMerchantById(String idScanner) throws MerchantNotFoundException {
-        return merchants.stream().filter(s -> s.getId().equals(idScanner)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
+    public Merchant getMerchantById(String merchantId) throws MerchantNotFoundException {
+        return merchants.stream().filter(s -> s.getId().equals(merchantId)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
     }
 
-    public boolean deleteMerchant(String idDelete) throws MerchantNotFoundException, IOException {
-        Merchant merchant = merchants.stream().filter(s -> s.getId().equals(idDelete)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
+    public boolean deleteMerchant(String merchantId) throws MerchantNotFoundException {
+        Merchant merchant = merchants.stream().filter(s -> s.getId().equals(merchantId)).findAny().orElseThrow(() -> new MerchantNotFoundException("Такого пользователя нет"));
+        merchant.getBankAccounts().clear();
         merchants.remove(merchant);
-        Files.write(Path.of(FILE_MERCHANT), merchants.stream().map(Merchant::toString).toList());
-        Files.write(Path.of(FILE_BANK_ACCOUNT), merchants.stream().map(Merchant::toString).toList());
+        changeMerchantFile();
         return true;
     }
 
     public List<Merchant> getMerchants() {
         return merchants;
+    }
+
+    public void changeBankAccountFile() {
+        try (FileWriter writer = new FileWriter(FILE_BANK_ACCOUNT_TEMP)) {
+            for (Merchant m : merchants) {
+                m.getBankAccounts().forEach(s -> {
+                    try {
+                        writer.write(s.getId() + " " + s.getMerchantId() + " " + s.getStatus() + " " + s.getAccountNumber() + " " +
+                                s.getCreatedTime() + "\n");
+                    } catch (IOException e) {
+                        System.out.println("Не удалось обновить файл");
+                    }
+                });
+            }
+        } catch (IOException e) {
+            System.out.println("Не удалось обновить файл");
+        }
+        File file1 = new File(FILE_BANK_ACCOUNT);
+        File file2 = new File(FILE_BANK_ACCOUNT_TEMP);
+        File file3 = new File(FILE_BANK_ACCOUNT);
+        if (file1.exists() && file1.delete() && file2.exists()) {
+            System.out.println(file2.renameTo(file3) ? "Обновление прошло успешно" :
+                    "При обновлении merchant.txt произошла ошибка");
+        }
+    }
+
+    public void changeMerchantFile() {
+        try (FileWriter writer = new FileWriter(FILE_MERCHANT_TEMP)) {
+            merchants.forEach(s -> {
+                try {
+                    writer.write(s.getId() + " " + s.getName() + " " + s.getCreatedAt() + "\n");
+                } catch (IOException e) {
+                    System.out.println("Не удалось обновить файл");
+                }
+            });
+        } catch (IOException e) {
+            System.out.println("Не удалось обновить файл");
+        }
+        File file1 = new File(FILE_MERCHANT);
+        File file2 = new File(FILE_MERCHANT_TEMP);
+        File file3 = new File(FILE_MERCHANT);
+        if (file1.exists() && file1.delete() && file2.exists()) {
+            System.out.println(file2.renameTo(file3) ? "Обновление прошло успешно" :
+                    "При обновлении merchant.txt произошла ошибка");
+        }
     }
 }
