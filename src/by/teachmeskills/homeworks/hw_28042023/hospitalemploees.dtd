@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hospital [
+        <!ELEMENT hospital (doctor+)>
+        <!ELEMENT doctor (name, position, department,workExperience)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT position (#PCDATA)>
+        <!ELEMENT department (#PCDATA)>
+        <!ELEMENT workExperience (#PCDATA)>
+        ]>

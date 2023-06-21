@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hospital SYSTEM "hospitalemploees.dtd">
+
+<hospital>
+    <doctor>
+        <name>Kozlova Irina Vasilieva</name>
+        <position>Nurse</position>
+        <department>Therapeutic</department>
+        <workExperience>10</workExperience>
+    </doctor>
+    <doctor>
+        <name>Ivanov Sergey Dmitrievich</name>
+        <position>Podiatrist</position>
+        <department>Therapeutic</department>
+        <workExperience>1</workExperience>
+    </doctor>
+    <doctor>
+        <name>Petrova Svetlava Igorevna</name>
+        <position>Dentist</position>
+        <department>Dental</department>
+        <workExperience>7</workExperience>
+    </doctor>
+    <doctor>
+        <name>Glaz Alla Nikolaevna</name>
+        <position>Chief of department</position>
+        <department>X-ray</department>
+        <workExperience>18</workExperience>
+    </doctor>
+    <doctor>
+        <name>Hlot Dmitry Artemovich</name>
+        <position>Oncologist</position>
+        <department>Oncology</department>
+        <workExperience>6</workExperience>
+    </doctor>
+</hospital>
