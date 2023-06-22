@@ -4,9 +4,6 @@
     <xs:simpleType name="stringtype">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
-    <xs:simpleType name="inttype">
-        <xs:restriction base="xs:positiveInteger"/>
-    </xs:simpleType>
 
     <!--Сложные элементы-->
     <xs:complexType name="doctortype">
@@ -14,7 +11,7 @@
             <xs:element name="name" type="stringtype"/>
             <xs:element name="position" type="stringtype"/>
             <xs:element name="department" type="stringtype"/>
-            <xs:element name="workExperience" type="inttype"/>
+            <xs:element name="workExperience" type="stringtype"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="hospitaltype">

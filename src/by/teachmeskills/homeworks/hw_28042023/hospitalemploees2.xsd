@@ -4,7 +4,7 @@
     <xs:element name="name" type="xs:string"/>
     <xs:element name="position" type="xs:string"/>
     <xs:element name="department" type="xs:string"/>
-    <xs:element name="workExperience" type="xs:positiveInteger"/>
+    <xs:element name="workExperience" type="xs:string"/>
 
     <!-- определение составных элементов -->
     <xs:element name="doctor">

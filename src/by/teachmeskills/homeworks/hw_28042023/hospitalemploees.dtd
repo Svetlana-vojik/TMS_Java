@@ -7,3 +7,35 @@
         <!ELEMENT department (#PCDATA)>
         <!ELEMENT workExperience (#PCDATA)>
         ]>
+<hospital>
+    <doctor>
+        <name>Kozlova Irina Vasilieva</name>
+        <position>Nurse</position>
+        <department>Therapeutic</department>
+        <workExperience>10 years</workExperience>
+    </doctor>
+    <doctor>
+        <name>Ivanov Sergey Dmitrievich</name>
+        <position>Podiatrist</position>
+        <department>Therapeutic</department>
+        <workExperience>1 year</workExperience>
+    </doctor>
+    <doctor>
+        <name>Petrova Svetlava Igorevna</name>
+        <position>Dentist</position>
+        <department>Dental</department>
+        <workExperience>7 years</workExperience>
+    </doctor>
+    <doctor>
+        <name>Glaz Alla Nikolaevna</name>
+        <position>Chief of department</position>
+        <department>X-ray</department>
+        <workExperience>18 years</workExperience>
+    </doctor>
+    <doctor>
+        <name>Hlot Dmitry Artemovich</name>
+        <position>Oncologist</position>
+        <department>Oncology</department>
+        <workExperience>6 years</workExperience>
+    </doctor>
+</hospital>
