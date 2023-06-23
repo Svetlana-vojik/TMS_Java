@@ -10,6 +10,10 @@ public class Doctor {
         this.workExperience = workExperience;
     }
 
+    public Doctor() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -24,5 +28,31 @@ public class Doctor {
 
     public String getWorkExperience() {
         return workExperience;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setWorkExperience(String workExperience) {
+        this.workExperience = workExperience;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", department='" + department + '\'' +
+                ", workExperience='" + workExperience + '\'' +
+                '}';
     }
 }
