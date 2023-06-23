@@ -19,8 +19,7 @@ public class StAXStream {
         String fileName = "C:\\Users\\svetlana.ezheleva\\Desktop\\Java\\HW\\Java HWs\\src\\by\\teachmeskills\\homeworks\\hw_28042023\\hospitalemploees.xml";
         List<Doctor> doctors = parseXMLfile(fileName);
         for (Doctor doctor : doctors) {
-            System.out.println(
-                    doctor.toString());
+            System.out.println(doctor.toString());
         }
     }
 
