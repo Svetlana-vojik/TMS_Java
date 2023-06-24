@@ -38,6 +38,7 @@ public class JaxbWorker {
         } catch (NoEmployeeFoundException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     private static void checkDoctor(String string) throws NoEmployeeFoundException {
