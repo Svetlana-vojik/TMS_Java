@@ -5,7 +5,7 @@ import exceptions.ValidationException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class validatorUtils {
+public class ValidatorUtils {
     private void ValidatorUtils() {
     }
     public static void validateName(String name) throws ValidationException {

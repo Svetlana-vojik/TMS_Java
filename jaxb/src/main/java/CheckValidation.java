@@ -1,13 +1,13 @@
 import exceptions.ValidationException;
-import validators.validatorUtils;
+import validators.ValidatorUtils;
 
 public class CheckValidation {
     public static void main(String[] args) {
         try {
-            validatorUtils.validateName("Petrova Svetlava Igorevna");
-            validatorUtils.validatePosition("Dentist");
-            validatorUtils.validateDepartment("Dental");
-            validatorUtils.validateWorkExperience("1 years");
+            ValidatorUtils.validateName("Petrova Svetlava Igorevna");
+            ValidatorUtils.validatePosition("Dentist");
+            ValidatorUtils.validateDepartment("Dental");
+            ValidatorUtils.validateWorkExperience("1 years");
         } catch (ValidationException e) {
             System.out.println(e.getMessage());
         }
