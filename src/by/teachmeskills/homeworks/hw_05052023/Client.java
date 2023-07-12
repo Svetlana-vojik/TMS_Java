@@ -3,8 +3,8 @@ package by.teachmeskills.homeworks.hw_05052023;
 import java.util.concurrent.Semaphore;
 
 public class Client extends Thread {
-    Semaphore sem;
-    int id;
+    private Semaphore sem;
+    private int id;
 
     public Client(Semaphore sem, int id) {
         this.sem = sem;

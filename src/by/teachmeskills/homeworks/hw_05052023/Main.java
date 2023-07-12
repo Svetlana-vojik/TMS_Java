@@ -5,9 +5,12 @@ import java.util.concurrent.Semaphore;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Semaphore sem = new Semaphore(5);
-        new Client(sem, 1).start();
-        new Client(sem, 2).start();
-        new Client(sem, 3).start();
+//        new Client(sem, 1).start();
+//        new Client(sem, 2).start();
+//        new Client(sem, 3).start();
+        for (int i = 1; i < 6; i++) {
+            new Client(sem, i).start();
+        }
         try {
             Thread.sleep(3000);
             for (int i = 4; i < 20; i++) {
